@@ -19,8 +19,8 @@ services:
     container_name: gateway
     image: registry.cn-shenzhen.aliyuncs.com/ccmi/gateway
     environment:
-      - JAVA_OPTS=-Xmx256m -Xms128m
       - JHIPSTER_SLEEP=30
+      - JAVA_OPTS=-Xmx256m -Xms128m
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos:8848
       - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos:8848
@@ -30,7 +30,7 @@ services:
     container_name: apply
     image: registry.cn-shenzhen.aliyuncs.com/ccmi/apply
     environment:
-      - JHIPSTER_SLEEP=30
+      - JHIPSTER_SLEEP=10
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos:8848
       - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos:8848
