@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APPLICATIONS=(uaa gateway apply pay)
-START=()
+START=(nacos)
 FLAT=false
 
 while getopts "n:i:" arg
@@ -56,4 +56,4 @@ done
 
 echo "docker-compose up -d$START"
 docker-compose -f ./microservice-all-dev.yml down
-docker-compose -f ./microservice-all-dev.yml up -d$START
+docker-compose -f ./microservice-all-dev.yml up -d $START
