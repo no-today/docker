@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sh deploy-dev.sh -n pay       // 启动除了 pay 之外的微服务
+# sh deploy-dev.sh -i pay appy  // 只启动 pay 和 apply 微服务
+
 APPLICATIONS=(uaa gateway apply pay)
 START=(nacos)
 FLAT=false
