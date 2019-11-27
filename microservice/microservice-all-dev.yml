@@ -1,0 +1,35 @@
+version: "3"
+services:
+  nacos:
+    container_name: nacos
+    image: nacos/nacos-server:1.1.0
+    environment:
+      - MODE=standalone
+    ports:
+      - 8848:8848
+  uaa:
+    container_name: uaa
+    image: registry.cn-shenzhen.aliyuncs.com/ccmi/uaa
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos:8848
+  gateway:
+    container_name: gateway
+    image: registry.cn-shenzhen.aliyuncs.com/ccmi/gateway
+    environment:
+      - JAVA_OPTS=-Xmx256m -Xms128m
+      - JHIPSTER_SLEEP=30
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos:8848
+    ports:
+      - 8080:8080
+  apply:
+    container_name: apply
+    image: registry.cn-shenzhen.aliyuncs.com/ccmi/apply
+    environment:
+      - JHIPSTER_SLEEP=30
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos:8848
