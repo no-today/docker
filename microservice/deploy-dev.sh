@@ -7,9 +7,12 @@ APPLICATIONS=(uaa gateway apply pay)
 START=(nacos)
 FLAT=false
 
-while getopts "n:i:" arg
+while getopts "an:i:" arg
 do
   case $arg in
+    a)
+      START="${START[@]} ${APPLICATIONS[@]}"
+      ;;
     i)
       for param in $*
       do
@@ -57,6 +60,6 @@ do
   esac
 done
 
-echo "docker-compose up -d$START"
+echo "docker-compose up -d $START"
 docker-compose -f ./microservice-all-dev.yml down
 docker-compose -f ./microservice-all-dev.yml up -d $START
