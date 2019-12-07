@@ -14,6 +14,6 @@ services:
       - 9300:9300
   dejavu:
     container_name: dejavu
-    image: appbaseio/dejavu:3.3.0
+    image: appbaseio/dejavu
     ports:
       - 8090:1358
