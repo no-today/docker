@@ -1,0 +1,23 @@
+version: '3'
+services:
+  hub:
+    container_name: selenium-hub
+    image: selenium/hub:3.141.59-titanium
+    ports:
+      - 4444:4444
+    environment:
+      GRID_TIMEOUT: 60                      # 客户端一分钟无交互就断开连接
+      GRID_JETTY_MAX_THREADS: 20
+      GRID_MAX_SESSION: 20
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60000  # 10S还获取不到Session就放弃
+  node-chrome:
+    container_name: node-chrome
+    image: selenium/node-chrome:3.141.59-titanium
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      NODE_MAX_INSTANCES: 1
+      NODE_MAX_SESSION: 20
+      HUB_HOST: hub
