@@ -14,7 +14,7 @@ services:
     container_name: node-chrome
     image: selenium/node-chrome:3.141.59-titanium
     volumes:
-      - /dev/shm:/dev/shm
+      - ~/volumes/selenium/dev/shm:/dev/shm
     depends_on:
       - hub
     environment:

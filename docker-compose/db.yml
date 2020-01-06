@@ -2,11 +2,11 @@ version: "3"
 services:
   mysql:
     container_name: mysql
-    image: mysql:8.0.18
+    image: mysql:5.7
     volumes:
-      - /data/mysql/conf:/etc/mysql/conf.d
-      - /data/mysql/data:/var/lib/mysql
-      - /data/mysql/logs:/var/log/mysql
+      - ~/volumes/mysql/conf:/etc/mysql/conf.d
+      - ~/volumes/mysql/data:/var/lib/mysql
+      - ~/volumes/mysql/logs:/var/log/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=gitchange
     ports:
@@ -15,8 +15,8 @@ services:
     container_name: redis
     image: redis:5.0.5
     volumes:
-      - /data/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
-      - /data/redis/data:/data
+      - ~/volumes/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ~/volumes/redis/data:/data
     ports:
       - 6379:6379
     command: redis-server /usr/local/etc/redis/redis.conf
@@ -24,8 +24,8 @@ services:
     container_name: mongo
     image: mongo:4.0.0
     volumes:
-      - /data/mongo/conf:/etc/mongo
-      - /data/mongo/data:/data/db
+      - ~/volumes/mongo/conf:/etc/mongo
+      - ~/volumes/mongo/data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=gitchange
