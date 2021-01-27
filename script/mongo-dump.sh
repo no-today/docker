@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 容器名
 CONTAINER_NAME=$1
 
