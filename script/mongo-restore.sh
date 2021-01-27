@@ -7,13 +7,13 @@ CONTAINER_NAME=$1
 USERNAME=$2
 PASSWORD=$3
 
-# 宿主机备份目录
-BACKUP_PATH=$4
+# 宿主机恢复文件存放路径
+ARCHIVE_FILE_PATH=$4
 
-echo " 开始恢复: $CONTAINER_NAME $(date +%Y-%m-%d_%H:%M:%S)"
+echo "开始恢复: $CONTAINER_NAME $ARCHIVE_FILE_PATH"
 
-docker cp $BACKUP_PATH $CONTAINER_NAME:/restore
-docker exec $CONTAINER_NAME mongorestore --host 127.0.0.1 --port 27017 -u $USERNAME -p=$PASSWORD --authenticationDatabase admin /restore
+docker cp $ARCHIVE_FILE_PATH $CONTAINER_NAME:restore.gz
+docker exec $CONTAINER_NAME mongorestore --gzip --archive=restore.gz --uri=mongodb://${USERNAME}:${PASSWORD}@localhost:27017
 docker exec $CONTAINER_NAME rm -rf /restore
 
-echo " 执行完成: $CONTAINER_NAME $(date +%Y-%m-%d_%H:%M:%S)"
+echo "执行完成: $CONTAINER_NAME $ARCHIVE_FILE_PATH"
